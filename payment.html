@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseBand Payment</title>
+
+  <link rel="stylesheet" href="css/payment.css">
+
+  <style>
+    .price-box {
+      margin: 15px 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .success-message {
+      margin-top: 15px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Pre-Order PulseBand</h1>
+
+    <form onsubmit="showMessage(); return false">
+
+      <label>Full Name</label>
+      <input type="text" placeholder="Enter your name" required>
+
+      <label>Email</label>
+      <input type="email" placeholder="Enter your email" required>
+
+      <label>Address</label>
+      <textarea placeholder="Enter your shipping address" required></textarea>
+
+      <label>Quantity</label>
+      <input type="number" id="quantity" min="1" value="1" onchange="calculateTotal()">
+
+      <!-- Price -->
+      <div class="price-box">
+        Price per PulseBand: ₱1,999
+      </div>
+
+      <!-- Total -->
+      <div class="price-box">
+        Total Amount: ₱<span id="total">₱1,999</span>
+      </div>
+
+      <label>Payment Method</label>
+      <select>
+        <option>GCash</option>
+        <option>Maya</option>
+        <option>COD</option>
+      </select>
+
+      <button type="submit">Confirm Order</button>
+
+      <div class="success-message" id="successMessage"></div>
+
+    </form>
+
+  </div>
+
+  <script>
+    const price = 2999;
+
+    function calculateTotal() {
+      let quantity = document.getElementById("quantity").value;
+      let total = quantity * price;
+
+      document.getElementById("total").innerText = total;
+    }
+
+    function showMessage() {
+      document.getElementById("successMessage").innerText =
+        "Thank you for your order! We will contact you soon for payment details.";
+    }
+  </script>
+
+</body>
+</html>
